@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Ava! 🎂</title>
+    <link rel="icon" href="images/gift.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            overflow-x: hidden;
+            background-color: #fafafa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Confetti Animation */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #f2d74e;
+            opacity: 0;
+            z-index: 10;
+            animation: confetti-fall linear forwards;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Page 1: Main Gift Page */
+        #page1 {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle, #ffb6c1, #ff69b4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .background-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .background-elements div {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.7);
+            animation: float 6s infinite ease-in-out;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .gift-container {
+            position: relative;
+            z-index: 2;
+            cursor: pointer;
+            animation: bounce 2s infinite ease-in-out;
+            transform-origin: center bottom;
+            margin-bottom: 30px;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .gift-container:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .gift-box {
+            width: 200px;
+            height: 160px;
+            background: linear-gradient(135deg, #ff6b6b, #ff9a9e);
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .gift-box::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.3) 50%, transparent 60%);
+            background-size: 200% 200%;
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .gift-lid {
+            width: 220px;
+            height: 40px;
+            background: linear-gradient(to right, #ff4757, #ff6b6b);
+            position: absolute;
+            top: -30px;
+            left: -10px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 4;
+        }
+
+        .gift-ribbon {
+            width: 30px;
+            height: 100px;
+            background: linear-gradient(to bottom, #ffcccc, #ff9999);
+            position: absolute;
+            top: -90px;
+            left: 85px;
+            z-index: 5;
+            border-radius: 5px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .gift-ribbon::before {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 30px;
+            background: linear-gradient(to right, #ffcccc, #ff9999);
+            top: 35px;
+            left: -35px;
+            transform: rotate(90deg);
+            border-radius: 5px;
+        }
+
+        .birthday-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+            z-index: 2;
+            opacity: 0;
+            animation: fadeIn 1s 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .click-message {
+            margin-top: 30px;
+            padding: 15px 25px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            text-align: center;
+            font-size: 18px;
+            color: #ff6b6b;
+            animation: pulse 2s infinite;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            z-index: 2;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .countdown-container {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ff6b6b;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+
+        /* Page 2: Blank White Page */
+        #page2 {
+            display: none;
+            min-height: 100vh;
+            width: 100%;
+            background: white;
+            padding: 40px 20px;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page 1: Main Gift Page -->
+    <div id="page1">
+        <div class="background-elements">
+            <!-- Dynamic elements will be added here by JavaScript -->
+        </div>
+        
+        <h1 class="birthday-title"style="margin-bottom: 100px ; ">Happy Birthday Ava!</h1>
+        
+        <div class="gift-container"  id="giftBox">
+            <div class="gift-ribbon"></div>
+            <div class="gift-lid"></div>
+            <div class="gift-box"></div>
+        </div>
+        
+        <div class="click-message">Click the gift to unwrap your surprise! 🎁</div>
+        
+        <div class="countdown-container" id="countdownTimer">
+            Celebrating your special day!
+        </div>
+    </div>
+    
+    <!-- Page 2: Blank White Page -->
+    <div id="page2"></div>
+    
+    <script>
+        // Add background elements
+function addBackgroundElements() {
+    const backgroundEl = document.querySelector('.background-elements');
+    const elements = ['❤️', '✨', '🎀', '🎂', '🎈', '🎉', '🎊'];
+
+    for (let i = 0; i < 40; i++) {
+        const el = document.createElement('div');
+        el.textContent = elements[Math.floor(Math.random() * elements.length)];
+        el.style.left = `${Math.random() * 100}%`;
+        el.style.top = `${Math.random() * 100}%`;
+        el.style.fontSize = `${Math.random() * 20 + 15}px`;
+        el.style.animationDelay = `${Math.random() * 5}s`;
+        el.style.animationDuration = `${Math.random() * 3 + 5}s`;
+        backgroundEl.appendChild(el);
+    }
+}
+
+// Create confetti effect
+function createConfetti() {
+    const colors = ['#ff6b6b', '#ffb6c1', '#ffd700', '#87CEFA', '#98FB98', '#DDA0DD'];
+
+    for (let i = 0; i < 150; i++) {
+        setTimeout(() => {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = `${Math.random() * 100}%`;
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.width = `${Math.random() * 10 + 5}px`;
+            confetti.style.height = `${Math.random() * 10 + 5}px`;
+            confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
+            document.body.appendChild(confetti);
+
+            // Remove confetti after animation completes
+            setTimeout(() => {
+                confetti.remove();
+            }, 5000);
+        }, i * 50);
+    }
+}
+
+// Variable to track if the countdown has finished
+let countdownFinished = false;
+
+// Initialize countdown timer
+function initCountdown() {
+    // Replace with actual birthday date
+    const birthdayDate = new Date('March 23, 2025');
+    const now = new Date();
+
+    // If birthday already passed this year, set it to next year
+    if (now > birthdayDate &&
+        now.getMonth() === birthdayDate.getMonth() &&
+        now.getDate() > birthdayDate.getDate()) {
+        birthdayDate.setFullYear(birthdayDate.getFullYear() + 1);
+    }
+
+    // If it's her birthday
+    if (now.getMonth() === birthdayDate.getMonth() &&
+        now.getDate() === birthdayDate.getDate()) {
+        document.getElementById('countdownTimer').textContent = "Today is your special day! 🎉";
+        countdownFinished = true; // Enable navigation on birthday
+        return;
+    }
+
+    // Set up countdown
+    const countdownInterval = setInterval(() => {
+        const now = new Date();
+        const distance = birthdayDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById('countdownTimer').textContent =
+            `${days}d ${hours}h ${minutes}m ${seconds}s until your birthday!`;
+
+        if (distance < 0) {
+            clearInterval(countdownInterval);
+            document.getElementById('countdownTimer').textContent = "Happy Birthday! 🎉";
+            countdownFinished = true; // Enable navigation when countdown hits zero
+        }
+    }, 1000);
+}
+
+// Navigate to page 2 with animation
+document.getElementById('giftBox').addEventListener('click', function(event) {
+    if (!countdownFinished) {
+        // If countdown isn't finished, show message and prevent navigation
+        alert("Please wait until the birthday countdown finishes before opening your gift!");
+        return; // Stop execution here
+    }
+    
+    // If countdown is finished, proceed with animation and navigation
+    createConfetti(); // Trigger confetti animation
+
+    // Animate gift opening
+    this.style.transform = 'scale(1.2)';
+    setTimeout(() => {
+        // Store scroll position at the top in session storage
+        sessionStorage.setItem('scrollPosition', 0);
+        window.location.href = 'bd.html'; // Replace with your actual HTML file name
+    }, 800);
+});
+
+// Initialize page
+document.addEventListener('DOMContentLoaded', function() {
+    addBackgroundElements();
+    initCountdown();
+    
+    // Add this to your bd.html page as well
+    // This will ensure the page scrolls to the top on page load
+    window.scrollTo(0, 0);
+});
+
+// Add this code to your bd.html page
+if (document.documentElement) {
+    // Force browser to start at the top of the page
+    document.documentElement.scrollTop = 0;
+    // For older browsers
+    document.body.scrollTop = 0;
+}
+    </script>
+</body>
+</html>
